@@ -22,10 +22,11 @@ public class BookService {
 		return book;
 		
 	}
-	public Book create(String name, String author) {
+	public Book create(String name, String author, String publisheddate) {
 		Book book = new Book();
 		book.setAuthor(author);
 		book.setName(name);
+		book.setPublisheddate(publisheddate);
 		manager.persist(book);
 		return book;
 		
@@ -34,7 +35,6 @@ public class BookService {
 		Book book = manager.find(Book.class,name);
 		manager.remove(book);
 		return book;
-		
 	}
 	public List<Book> findAll() {
 		@SuppressWarnings("unchecked")

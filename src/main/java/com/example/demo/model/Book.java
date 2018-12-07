@@ -11,7 +11,14 @@ public class Book {
 	@Id
 	private String name;
 	private String author;
+	private String publisheddate;
 	
+	public String getPublisheddate() {
+		return publisheddate;
+	}
+	public void setPublisheddate(String publisheddate) {
+		this.publisheddate = publisheddate;
+	}
 	public String getName() {
 		return name;
 	}

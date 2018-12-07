@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,7 @@ import com.example.demo.service.BookService;
 
 @Controller
 @RequestMapping("/books")
+@CrossOrigin
 public class BooksCRUD {
 
 	@Autowired
@@ -27,17 +29,17 @@ public class BooksCRUD {
 		return service.findAll();
 	}
 	
-	@RequestMapping(value = "/{name}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{name}", method = RequestMethod.GET )
 	@ResponseBody
 	public Book findOne(@PathVariable("name") String name) {
 		book = service.find(name);
 	    return book;
 	}
 
-	@RequestMapping(value = "/{name}/{author}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{name}/{author}/{publisheddate}", method = RequestMethod.GET)
 	@ResponseBody
-	public Book create(@PathVariable("name") String name,@PathVariable("author") String author) {
-		book = service.create(name,author);
+	public Book create(@PathVariable("name") String name,@PathVariable("author") String author, @PathVariable("publisheddate") String publisheddate) {
+		book = service.create(name,author,publisheddate);
 	    return book;
 	}
 	
