@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import java.util.List;
 
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
@@ -22,7 +23,7 @@ public class BookService {
 		return book;
 		
 	}
-	public Book create(String name, String author, String publisheddate) {
+	public Book create(String name, String author, String publisheddate) throws EntityExistsException{
 		Book book = new Book();
 		book.setAuthor(author);
 		book.setName(name);

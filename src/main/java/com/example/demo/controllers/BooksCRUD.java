@@ -2,6 +2,8 @@ package com.example.demo.controllers;
 
 import java.util.List;
 
+import javax.persistence.EntityExistsException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -39,7 +41,11 @@ public class BooksCRUD {
 	@RequestMapping(value = "/{name}/{author}/{publisheddate}", method = RequestMethod.GET)
 	@ResponseBody
 	public Book create(@PathVariable("name") String name,@PathVariable("author") String author, @PathVariable("publisheddate") String publisheddate) {
-		book = service.create(name,author,publisheddate);
+		try{ 
+			book = service.create(name,author,publisheddate);
+		}catch(EntityExistsException e) {
+			return null;
+		}
 	    return book;
 	}
 	
