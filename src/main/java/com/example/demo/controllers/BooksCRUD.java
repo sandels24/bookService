@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityExistsException;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,16 +25,19 @@ public class BooksCRUD {
 	private Book book;
 	@Autowired
 	private BookService service;
-	
+	org.slf4j.Logger log = LoggerFactory.getLogger(BookService.class);
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Book> findAll() {
+		log.info("Getting All Books from DB");
 		return service.findAll();
 	}
 	
 	@RequestMapping(value = "/{name}", method = RequestMethod.GET )
 	@ResponseBody
 	public Book findOne(@PathVariable("name") String name) {
+		log.info("Getting Books from DB wih name : "+name);
 		book = service.find(name);
 	    return book;
 	}

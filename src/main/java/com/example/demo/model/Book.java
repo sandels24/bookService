@@ -11,6 +11,10 @@ public class Book {
 	@Id
 	private String name;
 	private String author;
+	@Override
+	public String toString() {
+		return "Book [name=" + name + ", author=" + author + ", publisheddate=" + publisheddate + "]";
+	}
 	private String publisheddate;
 	
 	public String getPublisheddate() {
